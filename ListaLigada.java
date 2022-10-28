@@ -55,59 +55,68 @@ public class ListaLigada<T> {
     }
 
     public void cresc() {
-        if (tamanho != 0) {
-        int cont = 0;
-        int aux =0;
+         if (tamanho != 0) {
+         int contador=0;
         No<T> atual = primeiro;
-        cont = 0;
+        contador = 0;
+        // atual = atual.getProximo();
         while (atual.getProximo() != null) {
-          System.out.println("O conteúdo do nó na posição " + cont + " é igual a: " + atual.getConteudo());
+          System.out.println("O conteúdo do nó na posição " + contador + " é igual a: " + atual.getConteudo());
           atual = atual.getProximo();
-          cont++;
+          contador++;
         }
-        System.out.println("O conteúdo do nó na posição " + cont + " é igual a: " + atual.getConteudo());
+        System.out.println("O conteúdo do nó na posição " + contador + " é igual a: " + atual.getConteudo());
       } else {
         System.out.println("Não existe nenhum elemento na lista.");
       }
     }
 
     public void decres() {
-         if (tamanho != 0) {       
-        int cont= 0;
+        if (tamanho != 0) {
+        int contador=0;
         No<T> atual = primeiro;
+        contador = 0;
         while (atual.getProximo() != null) {
           atual = atual.getProximo();
-          cont++;
+          contador++;
         }
         while (atual.getAnterior() != null) {
-          System.out.println("O conteúdo do nó na posição " + cont + " é igual a: " + atual.getConteudo());
+          System.out.println("O conteúdo do nó na posição " + contador + " é igual a: " + atual.getConteudo());
           atual = atual.getAnterior();
-          cont--;
+          contador--;
         }
-             System.out.println("O conteúdo do nó na posição "+ cont + " é igual a: "+ atual.getConteudo());
-      }else {
-             System.out.println("Não Existe nenhum elemento na lista");
-         }
+        System.out.println("O conteúdo do nó na posição " + contador + " é igual a: " + atual.getConteudo());
+      } else {
+        System.out.println("Não existe nenhum elemento nessa lista");
+      }
     }
 
     public void Final(T conteudo) {
-        No<T> novoNo = new No<T>(null, conteudo, null);
         if (tamanho == 0) {
-            primeiro = novoNo;
-        } else {
-            No<T> atual = primeiro;
-            while (atual.getProximo() != null) {
-                atual = atual.getProximo();
-            }
-            atual.setProximo(novoNo);
-        }
-        tamanho++;
+      No<T> novoNo = new No<T>(null, conteudo, null);
+      primeiro = novoNo;
+    } else {
+      No<T> atual = primeiro;
+      while (atual.getProximo() != null) {
+        atual = atual.getProximo();
+      }
+      No<T> novoNo = new No<T>(atual, conteudo, null);
+      atual.setProximo(novoNo);
+    }
+    tamanho++;
     }
 
     public void Inicio(T conteudo) {
-        No<T> novoNo = new No<T>(null, conteudo, null);
-        primeiro = novoNo;
-        tamanho++;
+       No<T> novoNo = new No<T>(null, conteudo, null);
+    if (tamanho == 0) {
+      primeiro = novoNo;
+    } else {
+      novoNo.setProximo(primeiro);
+      novoNo.setAnterior(null);
+      primeiro.setAnterior(novoNo);
+      primeiro = novoNo;
+    }
+    tamanho++;
     }
 
     public void mostrarNos() {
